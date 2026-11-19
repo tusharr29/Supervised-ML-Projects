@@ -67,13 +67,20 @@
   const buttons = document.querySelectorAll('[data-theme-choice]');
   function applyTheme(theme){
     const selected = ['light','dark','midnight'].includes(theme) ? theme : 'midnight';
-    root.dataset.theme = selected === 'midnight' ? 'midnight' : selected;
-    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.themeChoice === selected)));
-    try { localStorage.setItem('ml-projects-theme', selected); } catch(e) {}
+    root.setAttribute('data-theme', selected);
+    buttons.forEach(function(button){
+      const active = button.getAttribute('data-theme-choice') === selected;
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    try { window.localStorage.setItem('ml-projects-theme', selected); } catch (error) {}
   }
-  let saved = 'midnight';
-  try { saved = localStorage.getItem('ml-projects-theme') || 'midnight'; } catch(e) {}
-  applyTheme(saved);
-  buttons.forEach(button => button.addEventListener('click', () => applyTheme(button.dataset.themeChoice)));
+  let savedTheme = 'midnight';
+  try { savedTheme = window.localStorage.getItem('ml-projects-theme') || 'midnight'; } catch (error) {}
+  applyTheme(savedTheme);
+  buttons.forEach(function(button){
+    button.addEventListener('click', function(){
+      applyTheme(button.getAttribute('data-theme-choice'));
+    });
+  });
 })();
 </script></body></html>
