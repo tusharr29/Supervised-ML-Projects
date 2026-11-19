@@ -1,9 +1,28 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stroke Prediction | Supervised ML Projects</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="wrap">
-<header class="topbar"><a class="brand" href="../index.html">ML<span>.</span>PROJECTS</a><div class="nav">PROJECT 05 / 06</div></header>
+<header class="topbar"><a class="brand" href="../index.html">ML<span>.</span>PROJECTS</a><div class="nav">PROJECT 05 / 06</div><div class="theme-switcher" role="group" aria-label="Choose colour theme">
+<button class="theme-btn" type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+<button class="theme-btn" type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+<button class="theme-btn" type="button" data-theme-choice="midnight" aria-pressed="false">Midnight</button>
+</div></header>
 <main><section class="detail-hero"><a class="back" href="../index.html">← Back to all projects</a><div class="eyebrow"><span class="dot"></span>Classification</div><h1>Stroke Prediction</h1><p class="lead">A binary classification project that estimates stroke risk from patient-related features.</p></section>
 <div class="detail-layout"><section class="panel"><h2>Project overview</h2><p>This project applies a Logistic Regression model to a healthcare dataset to classify stroke outcomes. It demonstrates the machine learning workflow from data preparation and exploratory analysis through model training, evaluation and deployment as an interactive Streamlit application. The model is intended for educational demonstration, not medical diagnosis.</p><h2>Key concepts and workflow</h2><ul class="topic-list"><li>Exploratory Data Analysis</li><li>Data cleaning and preprocessing</li><li>Feature preparation</li><li>Logistic Regression</li><li>Binary classification</li><li>Classification model evaluation</li><li>Model deployment with Streamlit</li></ul><div class="disclaimer">Educational demonstration only. This project is not a substitute for professional medical advice or diagnosis.</div></section>
 <aside class="side"><div class="meta"><div class="meta-label">Main algorithm</div><div class="meta-value">Logistic Regression</div></div>
 <div class="meta"><div class="meta-label">Technology stack</div><div class="stack"><span class="pill">Python</span><span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">Scikit-learn</span><span class="pill">Streamlit</span></div></div>
 <div class="meta"><div class="meta-label">Project links</div><div class="actions"><a class="button secondary" href="https://github.com/tusharr29/Stroke-Prediction-ML" target="_blank" rel="noopener">⌘ &nbsp; View GitHub repository</a><a class="button" href="https://stroke-prediction-ml-logistic-regression.streamlit.app/" target="_blank" rel="noopener">↗ &nbsp; Open live application</a></div></div></aside></div></main>
-<footer class="footer"><a href="../index.html">← All supervised learning projects</a></footer></div></body></html>
+<footer class="footer"><a href="../index.html">← All supervised learning projects</a></footer></div><script>
+(function(){
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll('[data-theme-choice]');
+  function applyTheme(theme){
+    const selected = ['light','dark','midnight'].includes(theme) ? theme : 'midnight';
+    root.dataset.theme = selected === 'midnight' ? 'midnight' : selected;
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.themeChoice === selected)));
+    try { localStorage.setItem('ml-projects-theme', selected); } catch(e) {}
+  }
+  let saved = 'midnight';
+  try { saved = localStorage.getItem('ml-projects-theme') || 'midnight'; } catch(e) {}
+  applyTheme(saved);
+  buttons.forEach(button => button.addEventListener('click', () => applyTheme(button.dataset.themeChoice)));
+})();
+</script></body></html>

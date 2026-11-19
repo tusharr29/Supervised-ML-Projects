@@ -3,7 +3,11 @@
 <meta name="description" content="Six supervised machine learning projects covering regression and classification.">
 <title>Supervised Machine Learning Projects</title><link rel="stylesheet" href="assets/style.css"></head>
 <body><div class="wrap">
-<header class="topbar"><a class="brand" href="index.html">ML<span>.</span>PROJECTS</a><div class="nav">SUPERVISED LEARNING COLLECTION</div></header>
+<header class="topbar"><a class="brand" href="index.html">ML<span>.</span>PROJECTS</a><div class="nav">SUPERVISED LEARNING COLLECTION</div><div class="theme-switcher" role="group" aria-label="Choose colour theme">
+<button class="theme-btn" type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+<button class="theme-btn" type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+<button class="theme-btn" type="button" data-theme-choice="midnight" aria-pressed="false">Midnight</button>
+</div></header>
 <main><section class="hero"><div class="eyebrow"><span class="dot"></span> PROJECT COLLECTION · 2026</div>
 <h1>Supervised Machine <span class="gradient">Learning Projects</span></h1>
 <p class="lead">A collection of practical machine learning projects exploring regression and classification problems — from data preparation and model development to evaluation and deployment.</p>
@@ -57,4 +61,19 @@
       <div class="bullets"><span class="pill">Dataset merging and data validation</span><span class="pill">Exploratory Data Analysis</span><span class="pill">Class imbalance analysis</span><span class="pill">Data preprocessing and feature preparation</span></div>
       <div class="card-link"><span>Explore project details</span><span class="arrow">↗</span></div>
     </a></div></section></main>
-<footer class="footer">Supervised Machine Learning Projects · Built by Tushar Deshmukh</footer></div></body></html>
+<footer class="footer">Supervised Machine Learning Projects · Built by Tushar Deshmukh</footer></div><script>
+(function(){
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll('[data-theme-choice]');
+  function applyTheme(theme){
+    const selected = ['light','dark','midnight'].includes(theme) ? theme : 'midnight';
+    root.dataset.theme = selected === 'midnight' ? 'midnight' : selected;
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.themeChoice === selected)));
+    try { localStorage.setItem('ml-projects-theme', selected); } catch(e) {}
+  }
+  let saved = 'midnight';
+  try { saved = localStorage.getItem('ml-projects-theme') || 'midnight'; } catch(e) {}
+  applyTheme(saved);
+  buttons.forEach(button => button.addEventListener('click', () => applyTheme(button.dataset.themeChoice)));
+})();
+</script></body></html>
